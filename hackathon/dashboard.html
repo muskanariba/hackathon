@@ -1,0 +1,267 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        /* Header and Navigation */
+        header {
+            background-color: #333;
+            padding: 1rem 0;
+        }
+
+        nav ul {
+            list-style-type: none;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            padding: 8px 12px;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        nav ul li a:hover {
+            background-color: #555;
+            border-radius: 5px;
+        }
+
+        /* Main Container */
+        .container {
+            margin: 2rem auto;
+            padding: 2rem;
+            width: 90%;
+            max-width: 800px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .show {
+            display: block;
+        }
+        .hide {
+            display: none;
+        }
+        /* Post Form */
+        .post_form {
+            margin-bottom: 2rem;
+        }
+
+        .post_form label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .post_form input[type="text"],
+        .post_form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .post_form input[type="text"]:focus,
+        .post_form textarea:focus {
+            border-color: #999;
+            outline: none;
+        }
+
+        .post_btn, .update_btn {
+            padding: 10px 20px;
+            border: none;
+            background-color: #333333;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .post_btn:hover, .update_btn:hover {
+            background-color: #555;
+        }
+
+        /* My Posts Table */
+        .my_content {
+            margin-top: 2rem;
+        }
+
+        .my_content h2 {
+            text-align: center;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .my_content table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .my_content table th,
+        .my_content table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        .my_content table th {
+            background-color: #333;
+            color: white;
+        }
+
+        .my_content table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            nav ul li {
+                margin: 10px 0;
+            }
+
+            .container {
+                width: 95%;
+                padding: 1.5rem;
+            }
+
+            .my_content table th, 
+            .my_content table td {
+                font-size: 0.9rem;
+            }
+        }
+        /* Delete button style (Red) */
+        .delete-btn {
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        /* Delete button hover effect */
+        .delete-btn:hover {
+            background-color: darkred;
+        }
+
+        /* Update button style (Green) */
+        .update-btn {
+            background-color: green;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        /* Update button hover effect */
+        .update-btn:hover {
+            background-color: darkgreen;
+        }
+
+        /* Home Button */
+        .home-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .home-btn:hover {
+            background-color: #555;
+        }
+        .delete {
+    background-color: #ff4d4d; /* Red color for delete button */
+    color: white; /* White text */
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.delete:hover {
+    background-color: #ff1a1a; /* Darker red on hover */
+}
+
+.update {
+    background-color: #4CAF50; /* Green color for update button */
+    color: white; /* White text */
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.update:hover {
+    background-color: #45a049; /* Darker green on hover */
+}
+
+    </style>
+</head>
+<body>
+
+    <div class="notify"></div>
+    <div class="container main">
+       <div class="main_content">
+            <!-- post form -->
+            <div class="post_form">
+              <label >Title</label>
+              <input type="text" id="title" placeholder="enter title">
+              <label>Your Post</label>
+              <textarea name="" id="post_content" cols="30" rows="10"></textarea>
+              <button id="post_btn" class="post_btn">Post Now</button>
+              <button id="update_btn" class="update_btn">Update Post</button>
+            </div>
+            <!-- table -->
+            <div class="my_content">
+                <h2>My Posts</h2>
+                <table>
+                    
+                </table>
+            </div>
+            <!-- Home Button -->
+            <button class="home-btn" onclick="window.location.href='home.html'">Go to Home</button>
+       </div>
+    </div>
+
+    <script type="module" src="firebase.js"></script>
+</body>
+</html>
